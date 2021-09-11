@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -13,7 +14,12 @@ export default function Home() {
       </Head>
 
       <main className="flex justify-center items-center h-screen">
-        <h1>Welcome to Dark Planets</h1>
+        <Image
+          src="/planets/planet08.png"
+          width={250}
+          height={250}
+          alt="planet"
+        />
       </main>
 
       <footer></footer>
