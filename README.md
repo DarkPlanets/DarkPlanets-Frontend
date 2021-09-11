@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- PROJECT LOGO -->
+<br />
+<div>
+  <div align="center">
+    <h1 style="font-weight: bold">Dark Planet 🌎</h1>
+    <a href="https://github.com/DarkPlanets/DarkPlanets-Frontend">
+        <img src="./public/planets/planet08.png" alt="Logo" style="width: 30%">
+    </a>
+    <p align="center" style="margin-top: 30px">
+        Dark Planet frontend provides an interface for players to easily interact with the Dark Planet game. Dark Planet is a planetary game based on Rarity. Rarity is a planetary inhabitant. This is a world fighting for energy.This is the v1.0 version.
+        <br />
+        <a href="https://github.com/DarkPlanets/DarkPlanets-Frontend/issues">Report Bugs</a>
+        ·
+        <a href="https://github.com/DarkPlanets/DarkPlanets-Frontend/issues">Request Feature</a>
+    </p>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+
+## Table of Contents
+
+- [About the Project](#about-the-project)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+
+<br />
+
+<!-- ABOUT THE PROJECT -->
+<h2 align="center"> About The Project </h2>
+
+<p>Dark Planet frontend provides an interface for players to easily interact with the Dark Planet game. Dark Planet is a planetary game based on Rarity. Rarity is a planetary inhabitant. This is a world fighting for energy.This is the v1.0 version.</p>
+
+<br />
+
+<!-- GETTING STARTED -->
 
 ## Getting Started
 
-First, run the development server:
+This is an example of how you can set up your project locally. To get a local copy up and running follow these simple example steps.
 
-```bash
-npm run dev
-# or
-yarn dev
+1. Clone the repo
+
+```sh
+git clone with HTTPS          https://github.com/DarkPlanets/DarkPlanets-Frontend.git
+git clone with SSH            git@github.com:DarkPlanets/DarkPlanets-Frontend.git
+git clone with Github CLI     gh repo clone DarkPlanets/DarkPlanets-Frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Development
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+1. yarn install           # Install dependencies for project
+2. yarn dev             # Starts the app
+```
