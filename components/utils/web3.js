@@ -112,7 +112,7 @@ const Web3Handler = () => {
         <div className="flex justify-center">
           {(active || error) && (
             <button
-              className="border border-white rounded-md px-3"
+              className="rounded-md px-3 bg-red-600"
               onClick={() => {
                 deactivate();
               }}
