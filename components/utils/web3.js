@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { injected, network } from "./connectors";
-import { useEagerConnect, useInactiveListener } from "./hooks";
+import { injected } from "./connectors";
+import { useEagerConnect } from "./hooks/useEagerConnect";
+import { useInactiveListener } from "./hooks/useInactiveListener";
 import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
 import {
   NoEthereumProviderError,
