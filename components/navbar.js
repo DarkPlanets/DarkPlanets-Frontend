@@ -11,7 +11,7 @@ function Navbar({ children }) {
           </div>
         </nav>
 
-        <div>{children}</div>
+        <div className="min-h-screen">{children}</div>
       </div>
     </div>
   );

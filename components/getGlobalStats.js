@@ -27,7 +27,7 @@ const GetGlobalStats = () => {
   return (
     <div className="flex flex-row w-full justify-center space-x-10 md:space-x-0 md:justify-between mt-3">
       <p className="bg-blue-500 px-3 py-1 rounded-sm">
-        Collect Users: {collectUsers}
+        Players Remaining: {collectUsers}
       </p>
       <p className="bg-blue-500 px-3 py-1 rounded-sm">
         Total Users: {totalUsers}

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import { useContract } from "../components/utils/hooks/useContract";
@@ -96,46 +97,56 @@ const Home = () => {
   const getDarkPlanet = useContract(DARK_PLANET_CONTRACT, DARK_PLANET_ABI);
 
   const getDarkPlanetStats = async () => {
-    setLoading(true);
-    const {
-      dxpRate,
-      totalSupply,
-      getDarkPlanetPoint,
-      getDarkPlanettDxp,
-      tokenURI,
-    } = getDarkPlanet;
+    if (getDarkPlanet) {
+      setLoading(true);
+      const {
+        dxpRate,
+        totalSupply,
+        getDarkPlanetPoint,
+        getDarkPlanettDxp,
+        tokenURI,
+        myStatus,
+      } = getDarkPlanet;
 
-    const userRarityID = parseInt(rarityID, 10);
-    const _dXPRate = await dxpRate();
-    const _totalSupply = await totalSupply();
+      const userRarityID = parseInt(rarityID, 10);
+      const _dXPRate = await dxpRate();
+      const _totalSupply = await totalSupply();
+      const _myStatus = await myStatus(userRarityID);
+      const _tURI = await tokenURI(userRarityID);
+      const _dPlanetEXP = await getDarkPlanettDxp(userRarityID);
+      const _dPlanetPoint = await getDarkPlanetPoint(userRarityID);
 
-    const _tURI = await tokenURI(userRarityID);
-    const _dPlanetEXP = await getDarkPlanettDxp(userRarityID);
-    const _dPlanetPoint = await getDarkPlanetPoint(userRarityID);
+      let _tokenURI = base64ToJson(_tURI);
+      let expRate = parseInt(_dXPRate);
+      let _status = parseInt(_myStatus);
+      let _totalSup = parseInt(_totalSupply);
+      let _points = parseInt(_dPlanetPoint, 10);
+      let _d_exp = parseInt(_dPlanetEXP, 10) / 1000000000000000000;
 
-    let _tokenURI = base64ToJson(_tURI);
-    let expRate = parseInt(_dXPRate);
-    let _totalSup = parseInt(_totalSupply);
-    let _points = parseInt(_dPlanetPoint, 10);
-    let _d_exp = parseInt(_dPlanetEXP, 10) / 1000000000000000000;
-
-    setStats({
-      ...stats,
-      name: _tokenURI.name,
-      description: _tokenURI.description,
-      image: _tokenURI.image,
-      exp: _d_exp,
-      points: _points,
-      expRate: expRate,
-      rarityID: userRarityID,
-      totalSupply: _totalSup,
-    });
-    setLoading(false);
+      setStats({
+        ...stats,
+        name: _tokenURI.name,
+        description: _tokenURI.description,
+        image: _tokenURI.image,
+        exp: _d_exp,
+        points: _points,
+        status: _status,
+        expRate: expRate,
+        rarityID: userRarityID,
+        totalSupply: _totalSup,
+      });
+      setLoading(false);
+      setErrorMsg("");
+    } else {
+      setErrorMsg(
+        "Please log into metamask to be able to search using your RarityID"
+      );
+    }
   };
 
   return (
     <RenderParticle>
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center h-full py-16">
         <div className="py-14 pb-20 z-50">
           <h1 className="font-extrabold text-6xl text-center">
             Welcome to Dark Planet
@@ -165,6 +176,7 @@ const Home = () => {
 
             <button
               onClick={getDarkPlanetStats}
+              disabled={!rarityID}
               className="px-10 bg-blue-500 rounded-md py-2"
             >
               Search
@@ -194,7 +206,7 @@ const Home = () => {
 
               <button
                 onClick={() => saveImage(stats.image)}
-                className="bg-blue-500 w-1/2 mt-3 rounded-md py-3 z-50"
+                className="bg-blue-500 md:w-1/2 w-full mt-3 rounded-md py-3 z-50"
               >
                 Save Image
               </button>
@@ -202,8 +214,11 @@ const Home = () => {
               <StatisticsCard stats={stats} />
             </div>
           )}
-          {!loading && stats?.points <= 0 && (
+          {!loading && stats?.points <= 0 && stats?.status < 3 && (
             <p className="text-lg">Sorry, you are currently not registered!</p>
+          )}
+          {!loading && stats?.points <= 0 && stats?.status == 3 && (
+            <p className="text-lg">Sorry, you've been eliminated!</p>
           )}
         </div>
       </div>

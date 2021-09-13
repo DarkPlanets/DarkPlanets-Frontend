@@ -1,5 +1,6 @@
 import "tailwindcss/tailwind.css";
 import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
@@ -17,6 +18,7 @@ const MyApp = ({ Component, pageProps }) => {
         <Navbar>
           <Component {...pageProps} />
         </Navbar>
+        <Footer />
       </div>
     </Web3ReactProvider>
   );
