@@ -13,9 +13,11 @@ function getLibrary(provider) {
 const MyApp = ({ Component, pageProps }) => {
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <Navbar>
-        <Component {...pageProps} />
-      </Navbar>
+      <div className="flex flex-col h-screen bg-gray-900">
+        <Navbar>
+          <Component {...pageProps} />
+        </Navbar>
+      </div>
     </Web3ReactProvider>
   );
 };

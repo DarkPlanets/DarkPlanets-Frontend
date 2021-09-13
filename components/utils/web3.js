@@ -117,7 +117,7 @@ const Web3Handler = () => {
                 deactivate();
               }}
             >
-              Deactivate
+              Logout
             </button>
           )}
 
