@@ -37,3 +37,17 @@ export const getContract = (address, ABI, library, account) => {
 
   return new Contract(address, ABI, getProviderOrSigner(library, account));
 };
+
+export const base64ToJson = (base64Str) =>
+  JSON.parse(
+    window.atob(
+      decodeURIComponent(base64Str).replace("data:application/json;base64,", "")
+    )
+  );
+
+export const saveImage = (base64Str) => {
+  var a = document.createElement("a");
+  a.href = base64Str;
+  a.download = "darkplanet.svg";
+  a.click();
+};
