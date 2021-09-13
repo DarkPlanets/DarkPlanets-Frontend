@@ -6,7 +6,9 @@
     <a href="https://github.com/DarkPlanets/DarkPlanets-Frontend">
         <img src="./public/planets/planet08.png" alt="Logo" style="width: 30%">
     </a>
-    <p align="center" style="margin-top: 30px">
+    <br />
+    <br />
+    <p align="center">
         Dark Planet frontend provides an interface for players to easily interact with the Dark Planet game. Dark Planet is a planetary game based on Rarity. Rarity is a planetary inhabitant. This is a world fighting for energy.This is the v1.0 version.
         <br />
         <a href="https://github.com/DarkPlanets/DarkPlanets-Frontend/issues">Report Bugs</a>
