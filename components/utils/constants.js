@@ -1,5 +1,6 @@
-import { getAddress } from "@ethersproject/address";
+import { isValidElement, cloneElement } from "react";
 import { Contract } from "@ethersproject/contracts";
+import { getAddress } from "@ethersproject/address";
 import { AddressZero } from "@ethersproject/constants";
 
 const CHAIN_IDS = {
@@ -50,4 +51,18 @@ export const saveImage = (base64Str) => {
   a.href = base64Str;
   a.download = "darkplanet.svg";
   a.click();
+};
+
+export const addPropsToReactElement = (element, props) => {
+  if (isValidElement(element)) return cloneElement(element, props);
+
+  return element;
+};
+
+export const addPropsToChildren = (children, props) => {
+  if (!Array.isArray(children)) return addPropsToReactElement(children, props);
+
+  return children.map((childElement) =>
+    addPropsToReactElement(childElement, props)
+  );
 };

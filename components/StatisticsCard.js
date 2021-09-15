@@ -1,5 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useContext } from "react";
+import { AppContext } from "./utils/context/appContext";
+
 const StatisticsCard = ({ stats }) => {
+  const { languagePack } = useContext(AppContext);
+
   return (
     <div className="flex flex-col items-center mt-14 z-50">
       <h2 className="py-5 text-2xl font-bold">Stats</h2>
@@ -9,9 +14,7 @@ const StatisticsCard = ({ stats }) => {
           if (st === "image") return null;
           return (
             <div key={index} className="bg-blue-500 rounded-md px-3 pb-4 pt-3">
-              <p className="font-bold text-xl">
-                {st.replace(/^\w/, (c) => c.toUpperCase())}
-              </p>
+              <p className="font-bold text-xl">{languagePack?.stats[st]}</p>
               <p className="py-2">{stats[st]}</p>
             </div>
           );

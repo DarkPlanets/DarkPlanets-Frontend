@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { injected } from "./connectors";
+import { AppContext } from "./context/appContext";
 import { useEagerConnect } from "./hooks/useEagerConnect";
 import { useInactiveListener } from "./hooks/useInactiveListener";
 import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
@@ -64,6 +65,7 @@ function Header() {
 
 const Web3Handler = () => {
   const context = useWeb3React();
+  const { languagePack } = useContext(AppContext);
   const { error, active, activate, connector, deactivate } = context;
 
   // handle logic to recognize the connector currently being activated
@@ -81,8 +83,8 @@ const Web3Handler = () => {
   useInactiveListener(!triedEager || !!activatingConnector);
 
   return (
-    <>
-      <div className="flex flex-row space-x-5">
+    <div className="flex flex-col">
+      <div className="flex flex-row space-x-5 w-full">
         {active ? (
           <Header />
         ) : (
@@ -103,7 +105,7 @@ const Web3Handler = () => {
                     activate(connectorsByName[name]);
                   }}
                 >
-                  Login using Metamask
+                  {languagePack?.navbar?.login}
                 </button>
               );
             })}
@@ -117,14 +119,13 @@ const Web3Handler = () => {
                 deactivate();
               }}
             >
-              Logout
+              {languagePack?.navbar?.logout}
             </button>
           )}
-
-          {!!error && <h4>{getErrorMessage(error)}</h4>}
         </div>
       </div>
-    </>
+      {!!error && <h4 className="pt-2">{getErrorMessage(error)}</h4>}
+    </div>
   );
 };
 
