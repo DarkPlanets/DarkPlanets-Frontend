@@ -24,6 +24,7 @@ const MyApp = ({ Component, pageProps }) => {
             type="image/png"
           ></link>
         </Head>
+
         <div className="flex flex-col h-screen bg-gray-900">
           <Navbar>
             <Component {...pageProps} />

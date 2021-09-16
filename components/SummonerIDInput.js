@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState, useContext } from "react";
+import { base64ToJson } from "./utils/constants";
 import { addPropsToChildren } from "./utils/constants";
 import { useContract } from "./utils/hooks/useContract";
 import { AppContext } from "./utils/context/appContext";
 import { DARK_PLANET_CONTRACT } from "./utils/constants";
-import { base64ToJson, saveImage } from "./utils/constants";
 
 import DARK_PLANET_ABI from "./utils/abis/darkplanet.json";
 
@@ -71,7 +71,7 @@ const SummonerIDInput = ({ children }) => {
           <input
             type="text"
             value={summonerID}
-            placeholder="Enter your Summoner ID..."
+            placeholder={languagePack?.indexPage?.input_id}
             className="text-black px-3 py-2 rounded-md w-full outline-none"
             onChange={(e) => {
               const trimmed_val = e.target.value.replace(/[^0-9]/g, "");
@@ -93,7 +93,7 @@ const SummonerIDInput = ({ children }) => {
           <button
             onClick={getDarkPlanetStats}
             disabled={!summonerID}
-            className="px-10 bg-blue-500 rounded-md py-2"
+            className="px-10 bg-blue-500 rounded-md py-2 w-1/2 lg:w-1/3 xl:w-1/6"
           >
             {languagePack?.indexPage?.search_btn}
           </button>
@@ -127,7 +127,10 @@ const SummonerIDInput = ({ children }) => {
               {languagePack?.indexPage?.save_image_btn}
             </button>
 
-            {addPropsToChildren(children, { stats })}
+            {addPropsToChildren(children, {
+              stats,
+              getDarkPlanet,
+            })}
           </div>
         )}
 

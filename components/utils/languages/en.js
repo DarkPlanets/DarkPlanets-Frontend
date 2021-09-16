@@ -5,10 +5,10 @@ export default {
     login: "Login using Metamask 🦊",
     logout: "Logout",
     pages: [
-      {
-        title: "Adventure",
-        url: "/adventure",
-      },
+      // {
+      //   title: "Play",
+      //   url: "/play",
+      // },
       {
         title: "Guides & Tips",
         url: "/guides",
@@ -17,7 +17,7 @@ export default {
   },
   indexPage: {
     title: "Welcome to Dark Planet",
-    input_id: "Enter your Rarity ID...",
+    input_id: "Enter your Summoner ID...",
     search_btn: "Search",
     save_image_btn: "Save Image",
   },
@@ -46,6 +46,26 @@ export default {
   adventurePage: {
     title: "Dark Planet Adventure",
     description: "Start playing by collecting Energy ⚡",
+    btn_list: [
+      {
+        title: "Start Collecting Energy ⚡",
+        tag: "start_energy",
+      },
+      {
+        title: "Stop Collecting Energy ⚡",
+        tag: "stop_energy",
+      },
+      {
+        title: "Trigger Capture",
+        tag: "trigger_capture",
+      },
+    ],
+    error_msg: {
+      start_energy: "Unable to start energy collection at this time.",
+      stop_energy: "Unable to stop energy collection at this time.",
+      trigger_capture:
+        "Unable to trigger capture at this time. Please try again!",
+    },
   },
   stats: {
     players_remain: "Players Remaining",
@@ -61,7 +81,7 @@ export default {
   },
   error: {
     not_login:
-      "Please log into metamask to be able to search using your RarityID",
+      "Please log into metamask to be able to search using your Summoner ID",
     not_numeric: "Please enter a numeric ID",
     not_registered: "Sorry, you are currently not registered!",
     user_eliminated: "Sorry, you've been eliminated!",

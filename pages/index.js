@@ -1,10 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import toast, { useToasterStore, Toaster } from "react-hot-toast";
 import { AppContext } from "../components/utils/context/appContext";
 
 import Head from "next/head";
 import Particles from "react-particles-js";
+import PlayButton from "../components/playbtn";
 import StatisticsCard from "../components/StatisticsCard";
 import GetGlobalStats from "../components/getGlobalStats";
 import SummonerIDInput from "../components/SummonerIDInput";
@@ -89,7 +91,15 @@ const RenderParticle = ({ children }) => (
 );
 
 const Home = () => {
+  const { toasts } = useToasterStore();
   const { languagePack } = useContext(AppContext);
+
+  useEffect(() => {
+    toasts
+      .filter((t) => t.visible) // Only consider visible toasts
+      .filter((_, i) => i >= 3) // Is toast index over limit?
+      .forEach((t) => toast.dismiss(t.id)); // Dismiss – Use toast.remove(t.id) for no exit animation
+  }, [toasts]);
 
   return (
     <div>
@@ -108,9 +118,11 @@ const Home = () => {
           </div>
 
           <SummonerIDInput>
+            <PlayButton />
             <StatisticsCard />
           </SummonerIDInput>
         </div>
+        <Toaster />
       </RenderParticle>
     </div>
   );
