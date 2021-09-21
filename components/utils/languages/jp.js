@@ -6,8 +6,8 @@ export default {
     logout: "ログアウト",
     pages: [
       // {
-      //   title: "ゲームします",
-      //   url: "/play",
+      //   title: "RarityLand",
+      //   url: "/rarityland",
       // },
       {
         title: "ガイドとヒント",
@@ -20,6 +20,11 @@ export default {
     input_id: "サモナーIDを入力してください...",
     search_btn: "検索",
     save_image_btn: "画像を保存",
+    land_id: "土地IDを入力してください...",
+  },
+  raritylandPage: {
+    title: "RarityLand",
+    description: "召喚者の土地。 構築と収益を開始します。",
   },
   guidesPage: {
     title: "ガイドとヒント",
@@ -78,6 +83,7 @@ export default {
     expRate: "経験率",
     summonerID: "サモナー",
     totalSupply: "総供給",
+    land_claimed: "主張",
   },
   error: {
     not_login:

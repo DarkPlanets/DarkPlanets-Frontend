@@ -9,7 +9,7 @@ import { DARK_PLANET_CONTRACT } from "./utils/constants";
 
 import DARK_PLANET_ABI from "./utils/abis/darkplanet.json";
 
-const SummonerIDInput = ({ children }) => {
+const SummonerIDInput = ({ children, placeholder, isClaim }) => {
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState(undefined);
@@ -71,7 +71,7 @@ const SummonerIDInput = ({ children }) => {
           <input
             type="text"
             value={summonerID}
-            placeholder={languagePack?.indexPage?.input_id}
+            placeholder={placeholder}
             className="text-black px-3 py-2 rounded-md w-full outline-none"
             onChange={(e) => {
               const trimmed_val = e.target.value.replace(/[^0-9]/g, "");
@@ -98,47 +98,37 @@ const SummonerIDInput = ({ children }) => {
             {languagePack?.indexPage?.search_btn}
           </button>
         </div>
-
         {errorMsg && (
           <p className="text-red-500 py-2 text-left w-full">{errorMsg}</p>
         )}
+
+        {isClaim &&
+          (appState?.user?.summonerID ? (
+            <button
+              className="bg-blue-500 w-full py-2 rounded-md my-5 cursor-not-allowed"
+              disabled
+            >
+              {languagePack?.indexPage?.claim_btn}
+            </button>
+          ) : (
+            <button
+              className="bg-blue-500 opacity-70 w-full py-2 rounded-md my-5 cursor-not-allowed"
+              disabled
+            >
+              {languagePack?.error?.claim_error}
+            </button>
+          ))}
       </div>
 
-      <div className="py-10 w-full flex flex-col items-center">
+      <div className="w-full flex flex-col items-center">
         {loading && <p className="text-xl">Loading...</p>}
-        {!loading && stats?.image && stats?.points > 0 && (
+        {!loading && (
           <div className="w-full flex flex-col items-center">
-            <div
-              style={{ overflow: "hidden" }}
-              className="lg:w-1/2 w-full sm:max-h-72 max-h-40 border z-50"
-            >
-              <img
-                src={stats.image}
-                alt="dp_image"
-                height="800"
-                style={{ maxWidth: "initial" }}
-              />
-            </div>
-
-            <button
-              onClick={() => saveImage(stats.image)}
-              className="bg-blue-500 md:w-1/2 w-full mt-3 rounded-md py-3 z-50"
-            >
-              {languagePack?.indexPage?.save_image_btn}
-            </button>
-
             {addPropsToChildren(children, {
               stats,
               getDarkPlanet,
             })}
           </div>
-        )}
-
-        {!loading && stats?.points <= 0 && stats?.status < 3 && (
-          <p className="text-lg">{languagePack?.error?.not_registered}</p>
-        )}
-        {!loading && stats?.points <= 0 && stats?.status == 3 && (
-          <p className="text-lg">{languagePack?.error?.user_eliminated}</p>
         )}
       </div>
     </div>

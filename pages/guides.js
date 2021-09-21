@@ -24,21 +24,21 @@ const Accordion = ({ qa_list }) => {
 
 const GuidesPage = () => {
   const { languagePack } = useContext(AppContext);
+  const guidesPage = languagePack?.guidesPage;
+
   return (
     <div>
       <Head>
-        <title>{languagePack?.guidesPage?.title}</title>
+        <title>{guidesPage?.title}</title>
       </Head>
 
       <main className="flex flex-col items-center mt-10">
-        <h1 className="text-4xl font-bold">
-          {languagePack?.guidesPage?.title}
-        </h1>
+        <h1 className="text-4xl font-bold">{guidesPage?.title}</h1>
         <p className="pt-4 text-lg font-semibold text-center">
-          {languagePack?.guidesPage?.description}
+          {guidesPage?.description}
         </p>
 
-        <Accordion qa_list={languagePack?.guidesPage?.qa} />
+        <Accordion qa_list={guidesPage?.qa} />
       </main>
     </div>
   );

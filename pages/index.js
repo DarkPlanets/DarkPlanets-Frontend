@@ -7,6 +7,7 @@ import { AppContext } from "../components/utils/context/appContext";
 import Head from "next/head";
 import Particles from "react-particles-js";
 import PlayButton from "../components/playbtn";
+import SaveImage from "../components/saveImage";
 import StatisticsCard from "../components/StatisticsCard";
 import GetGlobalStats from "../components/getGlobalStats";
 import SummonerIDInput from "../components/SummonerIDInput";
@@ -90,6 +91,24 @@ const RenderParticle = ({ children }) => (
   </div>
 );
 
+const RenderData = ({ stats, getDarkPlanet }) => {
+  const { languagePack } = useContext(AppContext);
+  if (stats?.image && stats?.points > 0)
+    return (
+      <div className="py-10 w-full items-center flex flex-col">
+        <SaveImage key="save_image" imageUrl={stats?.image} />
+        <PlayButton key="1" stats={stats} getDarkPlanet={getDarkPlanet} />
+        <StatisticsCard key="2" stats={stats} />
+      </div>
+    );
+  else if (stats?.points <= 0 && stats?.status < 3)
+    return <p className="text-lg">{languagePack?.error?.not_registered}</p>;
+  else if (stats?.points <= 0 && stats?.status == 3)
+    return <p className="text-lg">{languagePack?.error?.user_eliminated}</p>;
+
+  return null;
+};
+
 const Home = () => {
   const { toasts } = useToasterStore();
   const { languagePack } = useContext(AppContext);
@@ -117,11 +136,11 @@ const Home = () => {
             <GetGlobalStats />
           </div>
 
-          <SummonerIDInput>
-            <PlayButton />
-            <StatisticsCard />
+          <SummonerIDInput placeholder={languagePack?.indexPage?.input_id}>
+            <RenderData />
           </SummonerIDInput>
         </div>
+
         <Toaster />
       </RenderParticle>
     </div>

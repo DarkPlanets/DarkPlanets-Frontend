@@ -6,8 +6,8 @@ export default {
     logout: "로그 아웃",
     pages: [
       // {
-      //   title: "게임하다",
-      //   url: "/play",
+      //   title: "래리티랜드",
+      //   url: "/rarityland",
       // },
       {
         title: "가이드 및 팁",
@@ -20,6 +20,11 @@ export default {
     input_id: "소환사 ID를 입력하세요...",
     search_btn: "찾다",
     save_image_btn: "이미지를 저장",
+    land_id: "토지 ID를 입력하세요...",
+  },
+  raritylandPage: {
+    title: "RarityLand",
+    description: "소환사의 땅. 구축 및 수익 창출을 시작합니다.",
   },
   guidesPage: {
     title: "가이드 및 팁",
@@ -77,6 +82,7 @@ export default {
     expRate: "경험치",
     summonerID: "소환사",
     totalSupply: "총 공급",
+    land_claimed: "주장",
   },
   error: {
     not_login: "소환사 ID로 검색하려면 메타마스크에 로그인하세요.",

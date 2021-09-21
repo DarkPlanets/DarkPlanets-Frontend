@@ -6,8 +6,8 @@ export default {
     logout: "Logout",
     pages: [
       // {
-      //   title: "Play",
-      //   url: "/play",
+      //   title: "RarityLand",
+      //   url: "/rarityland",
       // },
       {
         title: "Guides & Tips",
@@ -20,6 +20,12 @@ export default {
     input_id: "Enter your Summoner ID...",
     search_btn: "Search",
     save_image_btn: "Save Image",
+    land_id: "Enter your Land ID...",
+    claim_btn: "Claim Land",
+  },
+  raritylandPage: {
+    title: "RarityLand",
+    description: "Land of the summoner. Start building and earning.",
   },
   guidesPage: {
     title: "Guides & Tips",
@@ -78,6 +84,7 @@ export default {
     expRate: "Exp Rate",
     summonerID: "Summoner",
     totalSupply: "Total Supply",
+    land_claimed: "Claimed",
   },
   error: {
     not_login:
@@ -86,5 +93,6 @@ export default {
     not_registered: "Sorry, you are currently not registered!",
     user_eliminated: "Sorry, you've been eliminated!",
     login_to_view: "Login to view",
+    claim_error: "Please enter your Land ID to claim...",
   },
 };

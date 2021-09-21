@@ -15,6 +15,10 @@ export const DARK_PLANET_CONTRACT = {
   [CHAIN_IDS.FANTOM_MAINNET]: "0xF43523e83E1E526C4B1a65250f4d5Ebacf60f815",
 };
 
+export const RARITY_LAND_CONTRACT = {
+  [CHAIN_IDS.FANTOM_MAINNET]: "0x5Ef44Dc59D4aBec3A0cCf7F5eEBaF53F9808D328",
+};
+
 export const isAddress = (value) => {
   try {
     return getAddress(value);

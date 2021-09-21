@@ -6,8 +6,8 @@ export default {
     logout: "登出",
     pages: [
       // {
-      //   title: "玩游戏",
-      //   url: "/play",
+      //   title: "稀有之地",
+      //   url: "/rarityland",
       // },
       {
         title: "指南和提示",
@@ -20,6 +20,11 @@ export default {
     input_id: "输入你的召唤师ID...",
     search_btn: "搜索",
     save_image_btn: "保存图片",
+    land_id: "输入您的土地 ID...",
+  },
+  raritylandPage: {
+    title: "稀有之地",
+    description: "召唤师之地。 开始建设和赚钱。",
   },
   guidesPage: {
     title: "指南和提示",
@@ -76,6 +81,7 @@ export default {
     expRate: "费用率",
     summonerID: "召唤师",
     totalSupply: "总供应量",
+    land_claimed: "声称",
   },
   error: {
     not_login: "请登录 metamask 以使用您的召唤师 ID 进行搜索",
