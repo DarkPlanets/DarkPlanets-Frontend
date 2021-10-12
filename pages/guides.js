@@ -27,7 +27,7 @@ const GuidesPage = () => {
   const guidesPage = languagePack?.guidesPage;
 
   return (
-    <div>
+    <div className="bg-gray-900">
       <Head>
         <title>{guidesPage?.title}</title>
       </Head>

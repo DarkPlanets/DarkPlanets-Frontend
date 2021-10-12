@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { useContext, useState } from "react";
+import { useRouter } from "next/router";
 import { AppContext } from "./utils/context/appContext";
 
 import Link from "next/link";
@@ -28,17 +30,21 @@ const MobileNav = ({ isActive, setActive }) => {
 };
 
 const Navbar = ({ children }) => {
+  const router = useRouter();
   const [isActive, setActive] = useState(false);
   const { languagePack, setAppState, appState } = useContext(AppContext);
 
   return (
-    <div className="bg-gray-900 text-white lg:px-0 px-5">
+    <div className={`bg-gray-900 text-white lg:px-0 px-5`}>
       <div className="mx-auto container">
         <nav className="py-5 flex flex-row justify-between items-center">
           <Link href="/">
-            <a className="font-bold text-xl">{languagePack?.navbar?.title}</a>
+            <a className="font-bold text-xl w-64">
+              {languagePack?.navbar?.title}
+            </a>
           </Link>
-          <div className="hidden lg:flex items-center justify-end space-x-6 w-2/3">
+
+          <div className="w-full space-x-5">
             {languagePack?.navbar?.pages?.map((pageLink, index) => {
               const { title, url } = pageLink;
 
@@ -48,8 +54,23 @@ const Navbar = ({ children }) => {
                 </Link>
               );
             })}
+          </div>
+
+          <div className="hidden lg:flex items-center justify-end space-x-6 w-2/3">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://discord.com/invite/QUe9AdXmTy"
+            >
+              <img
+                src="/socials/discord.svg"
+                alt="discord icon"
+                className="w-10"
+              />
+            </a>
+
             <Web3Handler />
-            <select
+            {/* <select
               name="language"
               onChange={(e) =>
                 setAppState({ ...appState, language: e.target.value })
@@ -60,7 +81,7 @@ const Navbar = ({ children }) => {
               <option value="cn">Chinese</option>
               <option value="kr">Korean</option>
               <option value="jp">Japanese</option>
-            </select>
+            </select> */}
           </div>
           <MobileNav setActive={setActive} isActive={isActive} />
         </nav>
@@ -78,7 +99,7 @@ const Navbar = ({ children }) => {
             })}
 
             <div className="pt-5">
-              <select
+              {/* <select
                 name="language"
                 onChange={(e) =>
                   setAppState({ ...appState, language: e.target.value })
@@ -89,7 +110,7 @@ const Navbar = ({ children }) => {
                 <option value="cn">Chinese</option>
                 <option value="kr">Korean</option>
                 <option value="jp">Japanese</option>
-              </select>
+              </select> */}
 
               <Web3Handler />
             </div>

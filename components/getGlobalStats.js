@@ -27,7 +27,7 @@ const GetGlobalStats = () => {
   };
 
   return (
-    <div className="flex flex-row w-full justify-center space-x-10 md:space-x-0 md:justify-between mt-3">
+    <div className="flex flex-row w-full mt-3 items-center justify-center space-x-5 pb-8">
       <p className="bg-blue-500 px-3 py-1 rounded-sm">
         {languagePack?.stats?.players_remain}:{" "}
         {collectUsers || languagePack?.error?.login_to_view}

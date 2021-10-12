@@ -5,10 +5,14 @@ export default {
     login: "Login using Metamask 🦊",
     logout: "Logout",
     pages: [
-      // {
-      //   title: "RarityLand",
-      //   url: "/rarityland",
-      // },
+      {
+        title: "RarityLand",
+        url: "/rarityland",
+      },
+      {
+        title: "Summon",
+        url: "/summon",
+      },
       {
         title: "Guides & Tips",
         url: "/guides",
@@ -23,7 +27,7 @@ export default {
     land_id: "Enter your Land ID...",
     claim_btn: "Claim Land",
   },
-  raritylandPage: {
+  rarityLandPage: {
     title: "RarityLand",
     description: "Land of the summoner. Start building and earning.",
   },
@@ -32,6 +36,11 @@ export default {
     description:
       "This page contains all information on how to get started with Dark Planet",
     qa: [
+      {
+        title: "Land Fees",
+        description:
+          "Starting at 2,000 total land claimed, the fees will start to increase by 5 FTM for every 1,000 land claimed. For example, when the total land claimed is between 2,000 - 3,000 land claimed, the land fee to claim a land will be at 15 FTM and when the total land claimed is between 3,000 - 4,000 then the land claim fee will be at 20 FTM.",
+      },
       {
         title: "startCollectingEnergy(uint256 rarityID)",
         description:
@@ -85,6 +94,13 @@ export default {
     summonerID: "Summoner",
     totalSupply: "Total Supply",
     land_claimed: "Claimed",
+    getLandFee: "Land Fees",
+    isLandPublic: "Land State",
+    getLandSummoners: "Summoners on Land",
+    getLandIncome: "Land Income",
+    isLandOwned: "Claim State",
+    summonerCoord: "Summoner Coordinate",
+    landCoord: "Land Coordinate",
   },
   error: {
     not_login:

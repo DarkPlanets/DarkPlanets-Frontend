@@ -5,8 +5,10 @@ import Script from "next/script";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 
+import { Provider } from "urql";
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
+import { client, ssrCache } from "../components/utils/urqlClient";
 import { AppProvider } from "../components/utils/context/appContext";
 
 function getLibrary(provider) {
@@ -16,8 +18,12 @@ function getLibrary(provider) {
 }
 
 const MyApp = ({ Component, pageProps }) => {
+  if (pageProps.urqlState) {
+    ssrCache.restoreData(pageProps.urqlState);
+  }
+
   return (
-    <>
+    <Provider value={client}>
       <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
@@ -41,7 +47,7 @@ const MyApp = ({ Component, pageProps }) => {
             ></link>
           </Head>
 
-          <div className="flex flex-col h-screen bg-gray-900">
+          <div className="flex flex-col h-screen">
             <Navbar>
               <Component {...pageProps} />
             </Navbar>
@@ -49,7 +55,7 @@ const MyApp = ({ Component, pageProps }) => {
           </div>
         </AppProvider>
       </Web3ReactProvider>
-    </>
+    </Provider>
   );
 };
 
