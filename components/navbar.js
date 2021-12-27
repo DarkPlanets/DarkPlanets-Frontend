@@ -1,125 +1,98 @@
-/* eslint-disable @next/next/no-img-element */
-import { useContext, useState } from "react";
-import { useRouter } from "next/router";
-import { AppContext } from "./utils/context/appContext";
-
 import Link from "next/link";
 import Web3Handler from "./utils/web3";
 
-const MobileNav = ({ isActive, setActive }) => {
-  return (
-    <div className="flex flex-col lg:hidden">
-      <button onClick={() => setActive(!isActive)}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      </button>
-    </div>
-  );
+import { useState } from "react";
+import { useRouter } from "next/router";
+
+const RenderButton = ({ setZoneActive, isZoneActive }) => {
+  const router = useRouter();
+
+  switch (router.pathname) {
+    case "/":
+      return (
+        <button className="bg-blue-500 px-5 rounded-md py-2 w-full" onClick={() => setZoneActive(!isZoneActive)}>
+          Enter App
+        </button>
+      );
+
+    default:
+      return <Web3Handler />;
+  }
 };
 
-const Navbar = ({ children }) => {
-  const router = useRouter();
-  const [isActive, setActive] = useState(false);
-  const { languagePack, setAppState, appState } = useContext(AppContext);
+const RenderNavigation = ({ attributes }) => {
+  const { setActive, isActive, isZoneActive, setZoneActive, navigation } = attributes;
 
   return (
-    <div className={`bg-gray-900 text-white lg:px-0 px-5`}>
-      <div className="mx-auto container">
-        <nav className="py-5 flex flex-row justify-between items-center">
-          <Link href="/">
-            <a className="font-bold text-xl w-64">
-              {languagePack?.navbar?.title}
-            </a>
+    <div>
+      <div className="lg:flex hidden flex-row space-x-10 justify-items-center items-center">
+        {navigation.map((nav, index) => (
+          <Link href={nav.url} key={index}>
+            <a className="font-bold text-lg">{nav.title}</a>
           </Link>
+        ))}
 
-          <div className="w-full space-x-5">
-            {languagePack?.navbar?.pages?.map((pageLink, index) => {
-              const { title, url } = pageLink;
+        <RenderButton isZoneActive={isZoneActive} setZoneActive={setZoneActive} />
+      </div>
 
-              return (
-                <Link href={url} key={index}>
-                  <a>{title}</a>
-                </Link>
-              );
-            })}
-          </div>
-
-          <div className="hidden lg:flex items-center justify-end space-x-6 w-2/3">
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://discord.com/invite/QUe9AdXmTy"
-            >
-              <img
-                src="/socials/discord.svg"
-                alt="discord icon"
-                className="w-10"
-              />
-            </a>
-
-            <Web3Handler />
-            {/* <select
-              name="language"
-              onChange={(e) =>
-                setAppState({ ...appState, language: e.target.value })
-              }
-              className="text-black w-1/8 rounded-md py-2 px-2 outline-none"
-            >
-              <option value="en">English</option>
-              <option value="cn">Chinese</option>
-              <option value="kr">Korean</option>
-              <option value="jp">Japanese</option>
-            </select> */}
-          </div>
-          <MobileNav setActive={setActive} isActive={isActive} />
-        </nav>
-
-        {isActive && (
-          <div className="flex flex-col space-y-2 bg-gray-600 p-3 pb-4 lg:hidden">
-            {languagePack?.navbar?.pages?.map((pageLink, index) => {
-              const { title, url } = pageLink;
-
-              return (
-                <Link href={url} key={index}>
-                  <a>{title}</a>
-                </Link>
-              );
-            })}
-
-            <div className="pt-5">
-              {/* <select
-                name="language"
-                onChange={(e) =>
-                  setAppState({ ...appState, language: e.target.value })
-                }
-                className="text-black w-2/3 mb-5 rounded-md py-2 px-2"
-              >
-                <option value="en">English</option>
-                <option value="cn">Chinese</option>
-                <option value="kr">Korean</option>
-                <option value="jp">Japanese</option>
-              </select> */}
-
-              <Web3Handler />
-            </div>
-          </div>
-        )}
-        <div className="min-h-screen">{children}</div>
+      <div className="lg:hidden flex lg:px-0 px-3">
+        <button onClick={() => setActive(!isActive)}>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+const RenderMobileNavigation = ({ attributes }) => {
+  const { isActive, isZoneActive, setZoneActive, navigation } = attributes;
+
+  if (isActive)
+    return (
+      <div className="bg-gray-800 rounded-md space-y-3 py-3 px-3 lg:hidden flex-col flex">
+        {navigation.map((nav, index) => (
+          <Link href={nav.url} key={index}>
+            <a className="text-lg">{nav.title}</a>
+          </Link>
+        ))}
+
+        <RenderButton isZoneActive={isZoneActive} setZoneActive={setZoneActive} />
+      </div>
+    );
+
+  return null;
+};
+
+const NavBar = ({ children, isZoneActive, setZoneActive, navigation }) => {
+  const [isActive, setActive] = useState(false);
+
+  const attributes = {
+    setActive: setActive,
+    isActive: isActive,
+    isZoneActive: isZoneActive,
+    setZoneActive: setZoneActive,
+    navigation: navigation,
+  };
+
+  return (
+    <nav className="container mx-auto text-white">
+      <div className="flex justify-between items-center">
+        <Link href="/">
+          <a className="flex flex-row items-center">
+            <img src="/logo.png" className="lg:w-24 w-10" />
+            <h2 className="font-spacequest lg:text-2xl text-lg">Darkplanets</h2>
+          </a>
+        </Link>
+
+        <RenderNavigation attributes={attributes} />
+      </div>
+
+      <RenderMobileNavigation attributes={attributes} />
+      <div>{children}</div>
+    </nav>
+  );
+};
+
+export default NavBar;

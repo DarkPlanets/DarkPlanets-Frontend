@@ -1,192 +1,75 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @next/next/no-img-element */
-import { useContext, useEffect } from "react";
-import toast, { useToasterStore, Toaster } from "react-hot-toast";
-import { AppContext } from "../components/utils/context/appContext";
+import Footer from "../components/footer";
+import NavBar from "../components/navbar";
+import Carousel from "../components/carousel";
 
-import Head from "next/head";
-import Particles from "react-particles-js";
-import PlayButton from "../components/playbtn";
-import SaveImage from "../components/saveImage";
-import StatisticsCard from "../components/StatisticsCard";
-import GetGlobalStats from "../components/getGlobalStats";
-import SummonerIDInput from "../components/SummonerIDInput";
+import { useState } from "react";
+import { RenderProfiles, RenderStats, RenderPlayZones } from "../components/utilFunc";
 
-const RenderParticle = ({ children }) => (
-  <div className="relative w-full h-full z-0">
-    <Particles
-      params={{
-        particles: {
-          number: {
-            value: 10,
-            density: {
-              enable: true,
-              value_area: 1000,
-            },
-          },
-          line_linked: {
-            enable: false,
-          },
-          move: {
-            speed: 0.5,
-          },
-          shape: {
-            type: ["image"],
-            image: [
-              {
-                src: "/planets/planet01.png",
-                height: 20,
-                width: 20,
-              },
-              {
-                src: "/planets/planet02.png",
-                height: 20,
-                width: 20,
-              },
-              {
-                src: "/planets/planet03.png",
-                height: 20,
-                width: 20,
-              },
-              {
-                src: "/planets/planet04.png",
-                height: 20,
-                width: 20,
-              },
-              {
-                src: "/planets/planet05.png",
-                height: 20,
-                width: 20,
-              },
-              {
-                src: "/planets/planet06.png",
-                height: 20,
-                width: 20,
-              },
-              {
-                src: "/planets/planet07.png",
-                height: 20,
-                width: 20,
-              },
-              {
-                src: "/planets/planet08.png",
-                height: 20,
-                width: 20,
-              },
-            ],
-          },
-          color: {
-            value: "#CCC",
-          },
-          size: {
-            value: 20,
-            random: false,
-          },
-        },
-        retina_detect: false,
-      }}
-      className="absolute w-full h-2/3 z-0"
-    />
-    {children}
-  </div>
-);
+const navigation = [
+  { title: "About", url: "#about" },
+  { title: "Team", url: "#team" },
+  { title: "Roadmap", url: "#roadmap" },
+];
 
-const RenderData = ({ stats, getDarkPlanet }) => {
-  const { languagePack } = useContext(AppContext);
-
-  if (stats?.image && stats?.points > 0)
-    return (
-      <div className="py-10 w-full items-center flex flex-col">
-        <SaveImage key="save_image" imageUrl={stats?.image} />
-        <PlayButton key="1" stats={stats} getDarkPlanet={getDarkPlanet} />
-
-        <div className="lg:w-1/2 w-full">
-          <StatisticsCard key="2" stats={stats} />
-        </div>
-      </div>
-    );
-  else if (stats?.points <= 0 && stats?.status < 3)
-    return <p className="text-lg">{languagePack?.error?.not_registered}</p>;
-  else if (stats?.points <= 0 && stats?.status == 3)
-    return <p className="text-lg">{languagePack?.error?.user_eliminated}</p>;
-
-  return null;
-};
-
-const Home = () => {
-  const { toasts } = useToasterStore();
-  const { languagePack } = useContext(AppContext);
-
-  useEffect(() => {
-    toasts
-      .filter((t) => t.visible) // Only consider visible toasts
-      .filter((_, i) => i >= 3) // Is toast index over limit?
-      .forEach((t) => toast.dismiss(t.id)); // Dismiss – Use toast.remove(t.id) for no exit animation
-  }, [toasts]);
+const Index = () => {
+  const [isZoneActive, setZoneActive] = useState(false);
 
   return (
-    <div className="bg-gray-900">
-      <Head>
-        <title>Dark Planets</title>
-      </Head>
+    <div className="min-h-screen bg-gray-800">
+      <div className="video-container">
+        <video autoPlay muted loop>
+          <source src="/planets/wallpaper.mp4" type="video/mp4" />
+        </video>
+        <div className="caption">
+          <NavBar isZoneActive={isZoneActive} setZoneActive={setZoneActive} navigation={navigation} />
 
-      <div
-        className="flex bg-blue-100 rounded-lg p-4 mb-4 my-5 text-sm text-blue-700"
-        role="alert"
-      >
-        <svg
-          className="w-5 h-5 inline mr-3"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-            clipRule="evenodd"
-          ></path>
-        </svg>
-        <div>
-          <span className="font-medium">Please Read!</span> All planet has been
-          successfully claimed. If you would like to play, please head over to
-          RarityLand. Thank you!
+          {isZoneActive && <RenderPlayZones />}
         </div>
       </div>
 
-      <RenderParticle>
-        <div className="flex flex-col justify-center items-center h-full py-16">
-          <div className="py-14 z-50 bg-gray-900">
-            {/* <h1 className="font-extrabold text-6xl text-center">
-              {languagePack?.indexPage?.title}
-            </h1> */}
+      <section>
+        <img src="redsmoke.png" className="relative lg:-mt-44 -mt-14 w-screen z-0" />
+        <div className="container mx-auto my-24 px-10">
+          <RenderStats />
+        </div>
+      </section>
 
-            <div className="w-full flex flex-col items-center">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="mix-blend-lighten w-8/12 -mt-14"
-              >
-                <source src="/planets/newplanet.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-
-          <div className="w-full -mt-16 z-50 items-center flex flex-col">
-            <GetGlobalStats />
-
-            <SummonerIDInput placeholder={languagePack?.indexPage?.input_id}>
-              <RenderData />
-            </SummonerIDInput>
-          </div>
+      <section id="about" className="container mx-auto text-white my-10 flex flex-row items-center justify-center mt-52 space-x-24">
+        <div className="lg:w-1/2 lg:px-0 px-10" data-aos="fade-right">
+          <h2 className="font-speedfreaks text-6xl">About</h2>
+          <p className="font-speedfreaks mt-2 text-2xl">So what is Darkplanet all about?</p>
+          <p className="mt-5">
+            DarkPlanet is an independent blockchain game based on the dark forest law based on universe exploration. The game is based on
+            Fantom (other chains will be expanded later), and the game integrates Andre Cronje &apos;s Rarity contract . Players can use the
+            rare hero characters they have acquired to occupy the planet. The game sets a variety of game attributes such as adventure,
+            exploration, and survival strategies. It is one of the few sci-fi style macro-universe survival strategy games in the block
+            chain game. In the game, players need to occupy New planet, protect your planet, and plunder the energy of other planets as much
+            as possible, and constantly upgrade the energy technology level of the planet to fight against unknown high-dimensional attacks.
+            The game is inspired by Chinese writer Liu Cixin Science fiction series &apos;The Three Body Problem&apos;.
+          </p>
         </div>
 
-        <Toaster />
-      </RenderParticle>
+        <img src="/planets/planet.png" className="lg:block hidden w-1/4" data-aos="fade-left" />
+      </section>
+
+      <section className="text-white pt-40">
+        <Carousel />
+      </section>
+
+      <section id="team" className="text-white py-40">
+        <div className="flex justify-center flex-col items-center container mx-auto z-10">
+          <h2 className="font-speedfreaks text-6xl">Team</h2>
+          <p className="font-speedfreaks text-xl">Come meet the members behind the scenes</p>
+          <RenderProfiles />
+        </div>
+        <img src="/redheart.png" className="min-w-screen relative z-0 -mt-96 lg:block hidden" />
+      </section>
+      <section id="roadmap" className="text-white py-10 lg:px-0 px-10 items-center justify-center flex">
+        <img src="/roadmap.png" className="w-2/3" />
+      </section>
+      <Footer />
     </div>
   );
 };
 
-export default Home;
+export default Index;

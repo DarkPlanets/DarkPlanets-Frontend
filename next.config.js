@@ -4,5 +4,7 @@ module.exports = {
     RPC_URL_250: "https://rpc.ftm.tools/",
     RPC_URL_TESTNET: "https://rpc.testnet.fantom.network/",
     GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
+    RL_FTMSCAN_API: process.env.RL_FTMSCAN_API,
+    DP_FTMSCAN_API: process.env.DP_FTMSCAN_API,
   },
 };

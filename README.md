@@ -4,7 +4,7 @@
   <div align="center">
     <h1 style="font-weight: bold">Dark Planet 🌎</h1>
     <a href="https://github.com/DarkPlanets/DarkPlanets-Frontend">
-        <img src="./public/planets/planet08.png" alt="Logo" style="width: 30%">
+        <img src="./public/logo.png" alt="Logo" style="width: 30%">
     </a>
     <br />
     <br />

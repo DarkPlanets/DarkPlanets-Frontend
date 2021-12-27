@@ -4,14 +4,10 @@ import { AppContext } from "./context/appContext";
 import { useEagerConnect } from "./hooks/useEagerConnect";
 import { useInactiveListener } from "./hooks/useInactiveListener";
 import { useWeb3React, UnsupportedChainIdError } from "@web3-react/core";
-import {
-  NoEthereumProviderError,
-  UserRejectedRequestError as UserRejectedRequestErrorInjected,
-} from "@web3-react/injected-connector";
+import { NoEthereumProviderError, UserRejectedRequestError as UserRejectedRequestErrorInjected } from "@web3-react/injected-connector";
 
 const connectorsByName = {
   Injected: injected,
-  //   Network: network,
 };
 
 function getErrorMessage(error) {
@@ -19,11 +15,7 @@ function getErrorMessage(error) {
     return "No Ethereum browser extension detected, install MetaMask on desktop or visit from a dApp browser on mobile.";
   } else if (error instanceof UnsupportedChainIdError) {
     return "You're connected to an unsupported network.";
-  } else if (
-    error instanceof UserRejectedRequestErrorInjected ||
-    error instanceof UserRejectedRequestErrorWalletConnect ||
-    error instanceof UserRejectedRequestErrorFrame
-  ) {
+  } else if (error instanceof UserRejectedRequestErrorInjected || error instanceof UserRejectedRequestErrorFrame) {
     return "Please authorize this website to access your Ethereum account.";
   } else {
     console.error(error);
@@ -39,15 +31,7 @@ function Account() {
       <span role="img" aria-label="robot">
         🤖
       </span>
-      <span>
-        {account === null
-          ? "-"
-          : account
-          ? `${account.substring(0, 6)}...${account.substring(
-              account.length - 4
-            )}`
-          : ""}
-      </span>
+      <span>{account === null ? "-" : account ? `${account.substring(0, 6)}...${account.substring(account.length - 4)}` : ""}</span>
     </>
   );
 }
@@ -92,8 +76,7 @@ const Web3Handler = () => {
             {Object.keys(connectorsByName).map((name) => {
               const currentConnector = connectorsByName[name];
               const connected = currentConnector === connector;
-              const disabled =
-                !triedEager || !!activatingConnector || connected || !!error;
+              const disabled = !triedEager || !!activatingConnector || connected || !!error;
 
               return (
                 <button

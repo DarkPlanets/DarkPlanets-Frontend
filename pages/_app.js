@@ -1,11 +1,17 @@
 /* eslint-disable @next/next/inline-script-id */
+import "aos/dist/aos.css";
+import "../styles/styles.css";
 import "tailwindcss/tailwind.css";
+
+import AOS from "aos";
 import Head from "next/head";
 import Script from "next/script";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import NavBar from "../components/navbar";
+import LoadingScreen from "../components/loadingscreen";
 
 import { Provider } from "urql";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 import { client, ssrCache } from "../components/utils/urqlClient";
@@ -17,17 +23,40 @@ function getLibrary(provider) {
   return library;
 }
 
+const RenderHeader = () => {
+  const router = useRouter();
+
+  const navigation = [
+    { title: "Home", url: "/" },
+    { title: "Dark Planet", url: "/darkplanet" },
+    { title: "Rarity Land", url: "/rarityland" },
+  ];
+
+  switch (router.pathname) {
+    case "/":
+      return null;
+
+    default:
+      return (
+        <div>
+          <NavBar navigation={navigation} />
+        </div>
+      );
+  }
+};
+
 const MyApp = ({ Component, pageProps }) => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   if (pageProps.urqlState) {
     ssrCache.restoreData(pageProps.urqlState);
   }
 
   return (
     <Provider value={client}>
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`}
-      />
+      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS_ID}`} />
       <Script strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -40,19 +69,15 @@ const MyApp = ({ Component, pageProps }) => {
       <Web3ReactProvider getLibrary={getLibrary}>
         <AppProvider>
           <Head>
-            <link
-              rel="Web Icon"
-              href="/planets/planet08.png"
-              type="image/png"
-            ></link>
+            <link rel="Web Icon" href="/logo.png" type="image/png"></link>
           </Head>
 
-          <div className="flex flex-col h-screen">
-            <Navbar>
+          <LoadingScreen>
+            <div className="flex flex-col min-h-screen bg-gray-800">
+              <RenderHeader />
               <Component {...pageProps} />
-            </Navbar>
-            <Footer />
-          </div>
+            </div>
+          </LoadingScreen>
         </AppProvider>
       </Web3ReactProvider>
     </Provider>

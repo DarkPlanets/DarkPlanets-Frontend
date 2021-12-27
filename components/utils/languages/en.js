@@ -33,8 +33,7 @@ export default {
   },
   guidesPage: {
     title: "Guides & Tips",
-    description:
-      "This page contains all information on how to get started with Dark Planet",
+    description: "This page contains all information on how to get started with Dark Planet",
     qa: [
       {
         title: "Land Fees",
@@ -78,8 +77,7 @@ export default {
     error_msg: {
       start_energy: "Unable to start energy collection at this time.",
       stop_energy: "Unable to stop energy collection at this time.",
-      trigger_capture:
-        "Unable to trigger capture at this time. Please try again!",
+      trigger_capture: "Unable to trigger capture at this time. Please try again!",
     },
   },
   stats: {
@@ -103,8 +101,7 @@ export default {
     landCoord: "Land Coordinate",
   },
   error: {
-    not_login:
-      "Please log into metamask to be able to search using your Summoner ID",
+    not_login: "Please log into metamask to be able to search using your Summoner ID",
     not_numeric: "Please enter a numeric ID",
     not_registered: "Sorry, you are currently not registered!",
     user_eliminated: "Sorry, you've been eliminated!",

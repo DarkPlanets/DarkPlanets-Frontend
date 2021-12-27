@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "spacequest";
+  src: local("spacequest"), url("/fonts/spacequest.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "speedfreaks";
+  src: local("speedfreaks"), url("/fonts/speedfreaks.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "bebasneue";
+  src: local("bebasneue"), url("/fonts/bebasneue.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* ALL CSS STYLES */
+.video-container {
+  height: 1080px;
+  width: 100%;
+  position: relative;
+}
+
+.video-container video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.video-container .caption {
+  z-index: 1;
+  position: relative;
+  text-align: center;
+  padding: 10px;
+}
+
+.text-shadow {
+  text-shadow: 1px 2px black;
+}
+
+/* Image Carousel */
+.carousel_pagination {
+  width: 30px;
+  height: 2px;
+  background: #4e619a;
+  margin: 1 px;
+  transition: all 0.3s ease-in-out;
+}
+
+.carousel_pagination-active {
+  width: 30px;
+  height: 3px;
+  background: white;
+  margin: 1 px;
+  transition: all 0.3s ease-in-out;
+}
+
+.carousel_image {
+  width: 1080px;
+}
+
+.carousel_image-active {
+  width: 1300px;
+  height: 100%;
+}
+
+.carousel_view {
+  width: 3000px;
+  transform: translateX(-1278.58 px);
+  transition: all 0ms ease 0s;
+}
+
+.darkplanet_image {
+  object-fit: cover;
+}
