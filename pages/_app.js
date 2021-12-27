@@ -29,7 +29,7 @@ const RenderHeader = () => {
   const navigation = [
     { title: "Home", url: "/" },
     { title: "Dark Planet", url: "/darkplanet" },
-    { title: "Rarity Land", url: "/rarityland" },
+    { title: "Rarity Land", url: "https://darkplanets.vercel.app/rarityland" },
     { title: "Airdrop", url: "https://airdrop-darkplanet.vercel.app/" },
   ];
 
