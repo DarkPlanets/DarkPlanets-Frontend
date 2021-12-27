@@ -22,7 +22,6 @@ const Rarity = () => {
   const { contracts } = useContext(AppContext);
   const { rarity } = contracts;
 
-  console.log(rarity);
   const _mint = async (_id) => {
     const estimateClaim = await rarity.estimateGas.summon(_id);
 

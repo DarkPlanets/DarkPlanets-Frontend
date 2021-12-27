@@ -3,9 +3,21 @@ import Footer from "../components/footer";
 
 import { formatEther, parseUnits } from "ethers/lib/utils";
 import { useWeb3React } from "@web3-react/core";
+import { Loader } from "../components/loadingscreen";
 import { useEffect, useState, useContext } from "react";
 import { base64ToJson } from "../components/utils/constants";
 import { AppContext } from "../components/utils/context/appContext";
+
+const RenderPlanetImage = ({ all_data }) => {
+  const [isLoaded, setLoaded] = useState(false);
+
+  return (
+    <div>
+      {!isLoaded && <Loader />}
+      <img src={all_data.image} className="w-40" onLoad={() => setLoaded(true)} />
+    </div>
+  );
+};
 
 const RenderPlanet = ({ stats, dark_planet }) => {
   const { account } = useWeb3React();
@@ -31,8 +43,9 @@ const RenderPlanet = ({ stats, dark_planet }) => {
 
         return (
           <div key={index} className="flex flex-row space-x-5 my-5">
-            <img src={all_data.image} className="w-40" />
+            {/* <img src={all_data.image} className="w-40" onLoad={(e) => console.log(e)} /> */}
 
+            <RenderPlanetImage all_data={all_data} />
             <div>
               <p className="text-xl font-bold capitalize">{all_data.name}</p>
               <p className="mt-3 w-1/2">{all_data.description}</p>
@@ -107,7 +120,7 @@ const DarkPlanet = ({ transactions }) => {
 
       let user_planets = await Promise.all(
         transactions
-          .filter(
+          ?.filter(
             (transaction) =>
               transaction.to.toLowerCase() === account.toLowerCase() &&
               transaction.contractAddress.toLowerCase() === dark_planet.address.toLowerCase() &&

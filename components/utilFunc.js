@@ -41,7 +41,7 @@ const RenderProfiles = () => {
       title: "Explorer",
       subtitle:
         "Explorer is an awesome community manager who handles anything related to the community. He's responsible for engaging the community.",
-      image: "/profiles/explorer.webp",
+      image: "/profiles/explorer.png",
       twitter: "https://twitter.com/darkplanetfans",
     },
   ];
@@ -69,7 +69,12 @@ const RenderProfiles = () => {
 const RenderPlayZones = () => {
   const playzones = [
     { title: "Dark Planet", description: "Enter dark planet zones", image: "/logo.png", url: "/darkplanet" },
-    { title: "Rarity Land", description: "Enter Rarity Land zones", image: "/city.svg", url: "/rarityland" },
+    {
+      title: "Rarity Land",
+      description: "This will redirect you to the old UI. New UI is currently being developed",
+      image: "/city.svg",
+      url: "https://darkplanets.vercel.app/rarityland",
+    },
     { title: "Rarity", description: "Enter Rarity zones", image: "/rarity.svg", url: "/rarity" },
   ];
 
@@ -79,8 +84,9 @@ const RenderPlayZones = () => {
         {playzones.map((zone, index) => (
           <Link href={zone.url} key={index}>
             <a className="flex flex-col items-center justify-center">
-              <img src={zone.image} className={`lg:w-60 w-40 h-40 ${zone.title === "Dark Planet" && "darkplanet_image"}`} />
+              <img src={zone.image} className={`lg:w-60 w-40 lg:h-40 h-20 ${zone.title === "Dark Planet" && "darkplanet_image"}`} />
               <p className="font-bebasneue lg:text-5xl text-4xl mt-5">{zone.title}</p>
+              <p className="text-md h-20">{zone.description}</p>
             </a>
           </Link>
         ))}
