@@ -47,19 +47,27 @@ const RenderPlanet = ({ stats, dark_planet }) => {
 
   if (account) {
     if (planetArray?.length > 0) {
-      return planetArray.map((stat, index) => {
-        const [all_data] = stat;
+      return (
+        <div>
+          <button onClick={_mint} className="mt-5 bg-blue-500 px-10 py-3 rounded-md">
+            Mint a planet
+          </button>
 
-        return (
-          <div key={index} className="flex flex-row space-x-5 my-5">
-            <RenderPlanetImage all_data={all_data} />
-            <div>
-              <p className="text-xl font-bold capitalize">{all_data.name}</p>
-              <p className="mt-3 w-1/2">{all_data.description}</p>
-            </div>
-          </div>
-        );
-      });
+          {planetArray.map((stat, index) => {
+            const [all_data] = stat;
+
+            return (
+              <div key={index} className="flex flex-row space-x-5 my-5">
+                <RenderPlanetImage all_data={all_data} />
+                <div>
+                  <p className="text-xl font-bold capitalize">{all_data.name}</p>
+                  <p className="mt-3 w-1/2">{all_data.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      );
     }
 
     if (statistics?.getCurrentSupply && statistics?.getMaxPlanet) {
@@ -96,13 +104,14 @@ const RenderPlanet = ({ stats, dark_planet }) => {
 };
 
 const RenderStats = ({ stats }) => {
+  const statistics = stats?.stats;
   if (stats) {
     return (
-      <div className="mb-5">
+      <div>
         <p>
-          Minted: {stats?.getCurrentSupply} / {stats?.getMaxPlanet}
+          Minted: {statistics?.getCurrentSupply} / {statistics?.getMaxPlanet}
         </p>
-        <p>Claim Fee: {stats?.getClaimFee} FTM</p>
+        <p>Claim Fee: {statistics?.getClaimFee} FTM</p>
       </div>
     );
   }
@@ -129,8 +138,7 @@ const DarkPlanet = ({ transactions }) => {
         transactions
           ?.filter(
             (transaction) =>
-              // transaction.to.toLowerCase() === account.toLowerCase() &&
-              transaction.to.toLowerCase() === "0xd4bBEFeA4095f3eaC7ecbDef49e138431e9227df".toLowerCase() &&
+              transaction.to.toLowerCase() === account.toLowerCase() &&
               transaction.contractAddress.toLowerCase() === dark_planet.address.toLowerCase() &&
               transaction.from.toLowerCase() === "0x0000000000000000000000000000000000000000".toLowerCase()
           )
@@ -147,7 +155,7 @@ const DarkPlanet = ({ transactions }) => {
   return (
     <div>
       <div className="container mx-auto text-white min-h-screen">
-        <RenderStats stats={userData.stats} />
+        <RenderStats stats={userData} dark_planet={dark_planet} />
         <RenderPlanet stats={userData} dark_planet={dark_planet} />
       </div>
 
