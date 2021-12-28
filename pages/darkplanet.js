@@ -11,10 +11,19 @@ import { AppContext } from "../components/utils/context/appContext";
 const RenderPlanetImage = ({ all_data }) => {
   const [isLoaded, setLoaded] = useState(false);
 
+  const handleOnLoad = () => {
+    setLoaded(true);
+  };
+
+  const handleOnError = (e) => {
+    e.target.onerror = null;
+    e.target.src = all_data.image;
+  };
+
   return (
     <div>
       {!isLoaded && <Loader />}
-      <img src={all_data.image} className="w-40" onLoad={() => setLoaded(true)} />
+      <img src={all_data.image} className="w-40" onLoad={handleOnLoad} onError={handleOnError} />
     </div>
   );
 };
@@ -43,8 +52,6 @@ const RenderPlanet = ({ stats, dark_planet }) => {
 
         return (
           <div key={index} className="flex flex-row space-x-5 my-5">
-            {/* <img src={all_data.image} className="w-40" onLoad={(e) => console.log(e)} /> */}
-
             <RenderPlanetImage all_data={all_data} />
             <div>
               <p className="text-xl font-bold capitalize">{all_data.name}</p>
@@ -122,7 +129,8 @@ const DarkPlanet = ({ transactions }) => {
         transactions
           ?.filter(
             (transaction) =>
-              transaction.to.toLowerCase() === account.toLowerCase() &&
+              // transaction.to.toLowerCase() === account.toLowerCase() &&
+              transaction.to.toLowerCase() === "0xd4bBEFeA4095f3eaC7ecbDef49e138431e9227df".toLowerCase() &&
               transaction.contractAddress.toLowerCase() === dark_planet.address.toLowerCase() &&
               transaction.from.toLowerCase() === "0x0000000000000000000000000000000000000000".toLowerCase()
           )
