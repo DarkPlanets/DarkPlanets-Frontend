@@ -26,9 +26,9 @@ const RenderContact = () => {
 
   return (
     <div className="flex flex-col mt-3">
-      {contacts.map((contact) => {
+      {contacts.map((contact, index) => {
         return (
-          <div className="flex flex-row space-x-2 mb-2">
+          <div key={index} className="flex flex-row space-x-2 mb-2">
             <img src="./socials/hello.svg" className="w-7" />
             <p className="w-1/2 text-white">{contact}</p>
           </div>
