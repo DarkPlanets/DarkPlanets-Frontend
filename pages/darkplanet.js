@@ -41,7 +41,7 @@ const RenderPlanet = ({ stats, dark_planet }) => {
 
     return await dark_planet.claim({
       value: parseUnits(claimFee),
-      gasLimit: parseInt(estimateClaim, 10) + 100000,
+      gasLimit: parseInt(estimateClaim, 10) + 500000,
     });
   };
 
