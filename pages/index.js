@@ -65,9 +65,11 @@ const Index = () => {
         </div>
         <img src="/redheart.png" className="min-w-screen relative z-0 -mt-96 lg:block hidden" />
       </section>
+
       <section id="roadmap" className="text-white py-10 lg:px-0 px-10 items-center justify-center flex">
         <img src="/roadmap.png" className="w-2/3" />
       </section>
+
       <Footer />
     </div>
   );

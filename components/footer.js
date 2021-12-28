@@ -21,6 +21,23 @@ const RenderSocials = () => {
   );
 };
 
+const RenderContact = () => {
+  const contacts = ["0x.geekery@darkplanets.world", "codeperfect@darkplanets.world"];
+
+  return (
+    <div className="flex flex-col mt-3">
+      {contacts.map((contact) => {
+        return (
+          <div className="flex flex-row space-x-2 mb-2">
+            <img src="./socials/hello.svg" className="w-7" />
+            <p className="w-1/2 text-white">{contact}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const Footer = () => {
   return (
     <div className="container mx-auto pt-16">
@@ -38,10 +55,7 @@ const Footer = () => {
               Contact
             </p>
 
-            <div className="flex flex-row items-center mt-3 space-x-2">
-              <img src="./socials/hello.svg" className="w-7" />
-              <p className="w-1/2 text-white">0x.geekery@gmail.com</p>
-            </div>
+            <RenderContact />
           </div>
 
           <div>
