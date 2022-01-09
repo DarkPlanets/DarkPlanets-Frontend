@@ -10,7 +10,7 @@ const RenderButton = ({ setZoneActive, isZoneActive }) => {
   switch (router.pathname) {
     case "/":
       return (
-        <button className="bg-blue-500 px-5 rounded-md py-2 w-full" onClick={() => setZoneActive(!isZoneActive)}>
+        <button className="bg-blue-500 px-5 rounded-md py-2" onClick={() => setZoneActive(!isZoneActive)}>
           Enter App
         </button>
       );
@@ -24,7 +24,7 @@ const RenderNavigation = ({ attributes }) => {
   const { setActive, isActive, isZoneActive, setZoneActive, navigation } = attributes;
 
   return (
-    <div>
+    <div className="flex flex-row w-full justify-end">
       <div className="lg:flex hidden flex-row space-x-10 justify-items-center items-center">
         {navigation.map((nav, index) => (
           <Link href={nav.url} key={index}>
