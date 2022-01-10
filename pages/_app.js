@@ -30,7 +30,7 @@ const RenderHeader = () => {
     { title: "Home", url: "/" },
     { title: "Dark Planet", url: "/darkplanet" },
     { title: "Rarity Land", url: "https://darkplanets.vercel.app/rarityland" },
-    { title: "Airdrop", url: "https://airdrop-darkplanet.vercel.app/" },
+    { title: "Land upgrade", url: "https://rarityland-upgrade.vercel.app/" },
   ];
 
   switch (router.pathname) {
