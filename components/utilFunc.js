@@ -68,19 +68,20 @@ const RenderProfiles = () => {
 
 const RenderPlayZones = () => {
   const playzones = [
-    { title: "Dark Planet", description: "Enter dark planet zones", image: "/logo.png", url: "/darkplanet" },
+    { title: "Dark Planet", description: "Enter dark planet zones", image: "/Frame_1.png", url: "/darkplanet" },
     {
       title: "Rarity Land",
       description: "This will redirect you to the old UI. New UI is currently being developed",
-      image: "/city.png",
+      image: "/Frame_2.png",
       url: "https://darkplanets.vercel.app/rarityland",
     },
-    { title: "Rarity", description: "Enter Rarity zones", image: "/rarity.png", url: "/rarity" },
+    { title: "Rarity", description: "Enter Rarity zones", image: "/Frame_3.png", url: "/rarity" },
+    { title: "The DXP", description: "Enter Rarity zones", image: "/Frame_4.png", url: "https://darkplanet-dxp.vercel.app/" },
   ];
 
   return (
     <div className="flex justify-center">
-      <div className="text-white lg:mt-40 mt-10 grid lg:grid-cols-3 grid-cols-1 lg:gap-0 gap-14 w-1/2">
+      <div className="text-white lg:mt-40 mt-10 grid lg:grid-cols-4 grid-cols-1 lg:gap-5 gap-14 md:w-4/5 w-3/5">
         {playzones.map((zone, index) => (
           <Link href={zone.url} key={index}>
             <a className="flex flex-col items-center justify-center">
