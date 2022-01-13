@@ -81,7 +81,7 @@ const RenderPlayZones = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="text-white lg:mt-40 mt-10 grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-14 md:w-4/5 w-3/5">
+      <div className="text-white lg:mt-20 mt-10 grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-14 md:w-4/5 w-3/5">
         {playzones.map((zone, index) => (
           <Link href={zone.url} key={index}>
             <a className="flex flex-col items-center justify-center">
