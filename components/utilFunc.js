@@ -50,7 +50,7 @@ const RenderProfiles = () => {
     <div className="grid lg:grid-cols-3 gap-5 mt-10 lg:px-0 px-10" data-aos="fade-up">
       {profiles.map((profile, index) => (
         <div key={index}>
-          <img src={profile.image} className="w-2/3 relative z-10" />
+          <img src={profile.image} className="w-full relative z-10 h-4/5" />
 
           <div className="flex flex-row items-center space-x-2 mt-4 mb-2">
             <p className="font-speedfreaks text-2xl relative z-10">{profile.title}</p>
@@ -76,16 +76,16 @@ const RenderPlayZones = () => {
       url: "https://darkplanets.vercel.app/rarityland",
     },
     { title: "Rarity", description: "Enter Rarity zones", image: "/Frame_3.png", url: "/rarity" },
-    { title: "The DXP", description: "Enter Rarity zones", image: "/Frame_4.png", url: "https://darkplanet-dxp.vercel.app/" },
+    { title: "The DXP", description: "Fuel for planetary flight", image: "/Frame_4.png", url: "https://darkplanet-dxp.vercel.app/" },
   ];
 
   return (
     <div className="flex justify-center">
-      <div className="text-white lg:mt-40 mt-10 grid lg:grid-cols-4 grid-cols-1 lg:gap-5 gap-14 md:w-4/5 w-3/5">
+      <div className="text-white lg:mt-40 mt-10 grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-14 md:w-4/5 w-3/5">
         {playzones.map((zone, index) => (
           <Link href={zone.url} key={index}>
             <a className="flex flex-col items-center justify-center">
-              <img src={zone.image} className={`lg:w-40 w-40 lg:h-40 h-20 ${zone.title === "Dark Planet" && "darkplanet_image"}`} />
+              <img src={zone.image} className="h-4/5" />
               <p className="font-bebasneue lg:text-5xl text-4xl mt-5">{zone.title}</p>
               <p className="text-md h-20">{zone.description}</p>
             </a>
