@@ -77,15 +77,16 @@ const RenderPlayZones = () => {
     },
     { title: "Rarity", description: "Enter Rarity zones", image: "/Frame_3.png", url: "/rarity" },
     { title: "The DXP", description: "Fuel for planetary flight", image: "/Frame_4.png", url: "https://darkplanet-dxp.vercel.app/" },
+    { title: "RarityLAnd 3D", description: "A 3D world for RarityLand", image: "/Frame_4.png", url: "https://rarityland3d.vercel.app/" },
   ];
 
   return (
     <div className="flex justify-center">
-      <div className="text-white lg:mt-20 mt-10 grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-14 md:w-4/5 w-3/5">
+      <div className="text-white lg:mt-20 mt-10 grid lg:grid-cols-5 grid-cols-2 lg:gap-5 gap-14 md:w-4/5 w-3/5">
         {playzones.map((zone, index) => (
           <Link href={zone.url} key={index}>
             <a className="flex flex-col items-center justify-center">
-              <img src={zone.image} className="h-4/5" />
+              <img src={zone.image} className="h-3/5" />
               <p className="font-bebasneue lg:text-5xl text-4xl mt-5">{zone.title}</p>
               <p className="text-md h-20">{zone.description}</p>
             </a>
