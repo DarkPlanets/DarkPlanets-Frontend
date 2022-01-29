@@ -28,7 +28,7 @@ const RenderNavigation = ({ attributes }) => {
       <div className="lg:flex hidden flex-row space-x-10 justify-items-center items-center">
         {navigation.map((nav, index) => (
           <Link href={nav.url} key={index}>
-            <a className="font-bold text-lg">{nav.title}</a>
+            <a style={{color: nav.spec ? "#F4D000" : ''}} className="font-bold text-lg">{nav.title}</a>
           </Link>
         ))}
 
@@ -54,7 +54,7 @@ const RenderMobileNavigation = ({ attributes }) => {
       <div className="bg-gray-800 rounded-md space-y-3 py-3 px-3 lg:hidden flex-col flex">
         {navigation.map((nav, index) => (
           <Link href={nav.url} key={index}>
-            <a className="text-lg">{nav.title}</a>
+            <a style={{color: nav.spec ? "#F4D000" : ''}} className="text-lg">{nav.title}</a>
           </Link>
         ))}
 

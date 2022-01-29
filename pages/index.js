@@ -9,7 +9,7 @@ const navigation = [
   { title: "About", url: "#about" },
   { title: "Team", url: "#team" },
   { title: "Roadmap", url: "#roadmap" },
-  { title: "Airdrop", url: "https://airdrop-darkplanet.vercel.app/" },
+  { title: "Finance", url: "https://darkplanet-finance.vercel.app/", spec: true },
 ];
 
 const Index = () => {
