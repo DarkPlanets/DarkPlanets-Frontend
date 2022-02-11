@@ -44,13 +44,20 @@ const RenderProfiles = () => {
       image: "/profiles/explorer.png",
       twitter: "https://twitter.com/darkplanetfans",
     },
+    {
+      title: "Solomon",
+      subtitle:
+        "Solomon is an awesome community manager who handles anything related to the community. He's responsible for engaging the community.",
+      image: "/profiles/goldx.jpg",
+      twitter: "https://twitter.com/solomon_obodo",
+    },
   ];
 
   return (
-    <div className="grid lg:grid-cols-3 gap-5 mt-10 lg:px-0 px-10" data-aos="fade-up">
+    <div className="grid lg:grid-cols-4 gap-5 mt-10 lg:px-0 px-10" data-aos="fade-up">
       {profiles.map((profile, index) => (
         <div key={index}>
-          <img src={profile.image} className="w-full relative z-10 h-4/5" />
+          <img src={profile.image} className="w-full relative z-10" style={{ height: 380 }} />
 
           <div className="flex flex-row items-center space-x-2 mt-4 mb-2">
             <p className="font-speedfreaks text-2xl relative z-10">{profile.title}</p>
